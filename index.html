@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ethan Baedorf — CS Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #0A0F1E;
+      --navy-mid:  #111827;
+      --navy-card: #141D2E;
+      --navy-border:#1E2D45;
+      --teal:      #00D4C8;
+      --teal-dim:  #00A89E;
+      --teal-glow: rgba(0,212,200,0.12);
+      --white:     #F0F4FF;
+      --muted:     #8899BB;
+      --body-font: 'Inter', sans-serif;
+      --display-font: 'Space Grotesk', sans-serif;
+      --mono-font: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--body-font);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--teal); color: var(--navy); }
+    a { color: var(--teal); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.75; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 4rem;
+      background: rgba(10,15,30,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .nav-logo {
+      font-family: var(--display-font);
+      font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--display-font);
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--white); opacity: 1; }
+    .nav-cta {
+      font-family: var(--display-font);
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--teal) !important; letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid var(--teal);
+      padding: 0.45rem 1.1rem; border-radius: 4px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--teal); color: var(--navy) !important; opacity: 1 !important; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8rem 4rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,212,200,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,200,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute; top: 20%; left: 55%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,212,200,0.08) 0%, transparent 65%);
+      transform: translate(-50%, -50%); z-index: 0; pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 800px; }
+    .hero-eyebrow {
+      font-family: var(--mono-font);
+      font-size: 0.82rem; color: var(--teal);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 1px; background: var(--teal);
+    }
+    h1.hero-name {
+      font-family: var(--display-font);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700; line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+    h1.hero-name .accent { color: var(--teal); }
+    .hero-terminal {
+      font-family: var(--mono-font);
+      font-size: clamp(0.95rem, 2vw, 1.2rem);
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+      min-height: 1.8em;
+    }
+    .hero-terminal .cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--teal);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-desc {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 540px; margin-bottom: 2.8rem;
+      line-height: 1.8;
+    }
+    .hero-desc strong { color: var(--white); font-weight: 500; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--display-font);
+      font-size: 0.88rem; font-weight: 600;
+      background: var(--teal); color: var(--navy);
+      padding: 0.75rem 1.8rem; border-radius: 5px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-secondary {
+      font-family: var(--display-font);
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--white);
+      border: 1px solid var(--navy-border);
+      padding: 0.75rem 1.8rem; border-radius: 5px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--teal); color: var(--teal); opacity: 1; }
+    .scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      font-family: var(--mono-font); font-size: 0.7rem; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      animation: float 2.5s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    .scroll-hint::after {
+      content: ''; display: block;
+      width: 1px; height: 32px; background: linear-gradient(var(--teal), transparent);
+    }
+
+    /* ── Section scaffold ── */
+    section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono-font); font-size: 0.75rem;
+      color: var(--teal); letter-spacing: 0.18em; text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--display-font);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700; letter-spacing: -0.01em;
+      margin-bottom: 3rem;
+      color: var(--white);
+    }
+    .section-rule {
+      display: inline-block;
+      width: 48px; height: 2px;
+      background: var(--teal);
+      margin-bottom: 1.2rem;
+    }
+    hr.divider {
+      border: none; border-top: 1px solid var(--navy-border);
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    /* ── About ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; line-height: 1.85; }
+    .about-text p strong { color: var(--white); }
+    .about-facts {
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .fact-item {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 8px; padding: 1.3rem 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .fact-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
+    .fact-label {
+      font-family: var(--mono-font); font-size: 0.7rem;
+      color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .fact-value { font-size: 0.95rem; color: var(--white); font-weight: 500; }
+    .fact-sub { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 10px; padding: 1.6rem;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .skill-card:hover { border-color: var(--teal); background: var(--teal-glow); }
+    .skill-card-title {
+      font-family: var(--display-font); font-weight: 600;
+      font-size: 0.9rem; color: var(--teal);
+      letter-spacing: 0.04em; margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .skill-tags {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .tag {
+      font-family: var(--mono-font); font-size: 0.76rem;
+      background: rgba(0,212,200,0.08);
+      color: var(--white);
+      padding: 0.28rem 0.65rem; border-radius: 4px;
+      border: 1px solid rgba(0,212,200,0.15);
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 10px; padding: 1.8rem;
+      display: flex; flex-direction: column;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .project-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid; grid-template-columns: 1.3fr 1fr;
+      gap: 2.5rem; align-items: start;
+    }
+    .project-badge {
+      font-family: var(--mono-font); font-size: 0.68rem;
+      color: var(--teal); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.8rem;
+    }
+    .project-name {
+      font-family: var(--display-font); font-size: 1.25rem;
+      font-weight: 700; margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+    .project-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.75; flex: 1; }
+    .project-tech {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-top: 1.3rem;
+    }
+    .project-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+    .project-link {
+      font-family: var(--mono-font); font-size: 0.78rem;
+      color: var(--teal); letter-spacing: 0.06em;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .project-link:hover { opacity: 0.75; }
+    .project-card.featured .project-desc { font-size: 0.95rem; }
+    .featured-right { display: flex; flex-direction: column; justify-content: flex-start; gap: 1rem; }
+    .arch-note {
+      background: rgba(0,212,200,0.06);
+      border: 1px solid rgba(0,212,200,0.15);
+      border-radius: 8px; padding: 1.2rem 1.3rem;
+    }
+    .arch-note-label {
+      font-family: var(--mono-font); font-size: 0.68rem;
+      color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .arch-note ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .arch-note ul li {
+      font-size: 0.85rem; color: var(--muted);
+      padding-left: 1rem; position: relative;
+    }
+    .arch-note ul li::before {
+      content: '→'; position: absolute; left: 0; color: var(--teal);
+    }
+
+    /* ── Experience ── */
+    .experience-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 160px 1fr;
+      gap: 2rem; padding: 2.2rem 0;
+      border-bottom: 1px solid var(--navy-border);
+    }
+    .exp-item:first-child { border-top: 1px solid var(--navy-border); }
+    .exp-date {
+      font-family: var(--mono-font); font-size: 0.78rem;
+      color: var(--muted); padding-top: 0.2rem; line-height: 1.5;
+    }
+    .exp-right {}
+    .exp-role {
+      font-family: var(--display-font); font-size: 1.05rem; font-weight: 600;
+      color: var(--white); margin-bottom: 0.2rem;
+    }
+    .exp-org {
+      font-size: 0.88rem; color: var(--teal); margin-bottom: 0.8rem;
+    }
+    .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .exp-bullets li {
+      font-size: 0.9rem; color: var(--muted); padding-left: 1.2rem; position: relative;
+    }
+    .exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--teal); }
+
+    /* ── Education ── */
+    .edu-card {
+      background: var(--navy-card);
+      border: 1px solid var(--navy-border);
+      border-radius: 10px; padding: 2rem 2.2rem;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 2rem; align-items: center;
+    }
+    .edu-shield {
+      width: 64px; height: 64px;
+      background: var(--teal-glow);
+      border: 1px solid rgba(0,212,200,0.25);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .edu-degree {
+      font-family: var(--display-font); font-size: 1.2rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.25rem;
+    }
+    .edu-school { font-size: 0.95rem; color: var(--teal); margin-bottom: 0.6rem; }
+    .edu-details { font-size: 0.88rem; color: var(--muted); }
+    .edu-courses {
+      margin-top: 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    /* ── Contact ── */
+    #contact { text-align: center; padding-bottom: 8rem; }
+    .contact-subtitle {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 480px; margin: 0 auto 2.5rem;
+    }
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .contact-link {
+      font-family: var(--display-font); font-size: 0.88rem; font-weight: 600;
+      color: var(--white); border: 1px solid var(--navy-border);
+      padding: 0.8rem 1.8rem; border-radius: 6px;
+      display: flex; align-items: center; gap: 0.55rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover { border-color: var(--teal); color: var(--teal); opacity: 1; }
+    .contact-link svg { flex-shrink: 0; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--navy-border);
+      text-align: center;
+      padding: 2rem 4rem;
+      font-family: var(--mono-font); font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── Animations ── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      #hero { padding: 7rem 1.5rem 5rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .project-card.featured { grid-column: auto; grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: 1fr; }
+      .edu-shield { display: none; }
+      footer { padding: 2rem 1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-logo">EB<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Computer Science Engineer</div>
+    <h1 class="hero-name">Ethan<br><span class="accent">Baedorf.</span></h1>
+    <div class="hero-terminal" id="terminal-text"><span class="cursor"></span></div>
+    <p class="hero-desc">
+      Senior CS student at <strong>UCF</strong> building intelligent systems at the intersection of
+      <strong>AI, databases, and full-stack engineering</strong>. Currently developing an AI-powered
+      clinical query engine for a healthcare sponsor.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="btn-secondary">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── About ── -->
+<section id="about">
+  <div class="fade-in">
+    <div class="section-label">// about</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">Who I Am</h2>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>
+        I'm a senior Computer Science student at the <strong>University of Central Florida</strong>,
+        expected to graduate in 2026. My work spans backend systems, AI integration, database
+        engineering, and frontend development — I like being able to build the whole thing.
+      </p>
+      <p>
+        Right now I'm leading technical development on <strong>ALICE</strong>, an AI-powered MCP
+        server for healthcare analytics that routes natural language clinical queries through a
+        vector-based RAG pipeline to pre-validated SQL — built for our senior design sponsor,
+        Pathways Health Partners.
+      </p>
+      <p>
+        Outside of school, I analyze equity markets and track positions using technical chart
+        analysis. I find that the systems-thinking you learn from engineering applies just as
+        naturally to understanding market structure.
+      </p>
+    </div>
+    <div class="about-facts">
+      <div class="fact-item">
+        <div class="fact-icon">🎓</div>
+        <div>
+          <div class="fact-label">Education</div>
+          <div class="fact-value">B.S. Computer Science</div>
+          <div class="fact-sub">University of Central Florida · 2026</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-icon">📍</div>
+        <div>
+          <div class="fact-label">Location</div>
+          <div class="fact-value">Orlando, Florida</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-icon">💼</div>
+        <div>
+          <div class="fact-label">Current Focus</div>
+          <div class="fact-value">Senior Design · ALICE</div>
+          <div class="fact-sub">AI Clinical Query Engine for Pathways Health Partners</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-icon">⚡</div>
+        <div>
+          <div class="fact-label">Interests</div>
+          <div class="fact-value">AI Systems · Database Engineering</div>
+          <div class="fact-sub">Stock Market Analysis · Technical Trading</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Skills ── -->
+<section id="skills">
+  <div class="fade-in">
+    <div class="section-label">// skills</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">Technical Toolkit</h2>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-card-title">Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Java</span>
+        <span class="tag">C</span>
+        <span class="tag">C++</span>
+        <span class="tag">Haskell</span>
+        <span class="tag">SQL</span>
+        <span class="tag">HTML / CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">AI & Data</div>
+      <div class="skill-tags">
+        <span class="tag">RAG Systems</span>
+        <span class="tag">FAISS</span>
+        <span class="tag">sentence-transformers</span>
+        <span class="tag">Vector Embeddings</span>
+        <span class="tag">MCP Protocol</span>
+        <span class="tag">Claude API</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Databases</div>
+      <div class="skill-tags">
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">SQL Server</span>
+        <span class="tag">JDBC</span>
+        <span class="tag">Schema Design</span>
+        <span class="tag">BCNF / Normal Forms</span>
+        <span class="tag">Triggers</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Tools & Platforms</div>
+      <div class="skill-tags">
+        <span class="tag">Git / GitHub</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Linux</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">GitHub Pages</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Concepts</div>
+      <div class="skill-tags">
+        <span class="tag">Object-Oriented Design</span>
+        <span class="tag">Functional Programming</span>
+        <span class="tag">Data Structures</span>
+        <span class="tag">Algorithms</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Polymorphism</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Coursework</div>
+      <div class="skill-tags">
+        <span class="tag">Programming Languages</span>
+        <span class="tag">Database Systems</span>
+        <span class="tag">Electricity & Magnetism</span>
+        <span class="tag">Data Structures</span>
+        <span class="tag">Algorithms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Projects ── -->
+<section id="projects">
+  <div class="fade-in">
+    <div class="section-label">// projects</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">Things I've Built</h2>
+  </div>
+  <div class="projects-grid fade-in">
+
+    <!-- Featured -->
+    <div class="project-card featured">
+      <div>
+        <div class="project-badge">★ Senior Design · 2025–2026</div>
+        <div class="project-name">ALICE — ACO Intelligence Engine</div>
+        <p class="project-desc">
+          An AI-powered MCP (Model Context Protocol) server built for Pathways Health Partners, a
+          healthcare sponsor managing Accountable Care Organizations. ALICE routes natural language
+          clinical queries through a RAG pipeline, using sentence-transformer embeddings and FAISS
+          similarity search to match queries against pre-validated SQL templates — producing accurate,
+          auditable results without freeform query generation.
+        </p>
+        <div class="project-tech">
+          <span class="tag">Python</span>
+          <span class="tag">MCP Server</span>
+          <span class="tag">FAISS</span>
+          <span class="tag">sentence-transformers</span>
+          <span class="tag">RAG</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Claude API</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div class="featured-right">
+        <div class="arch-note">
+          <div class="arch-note-label">System Architecture</div>
+          <ul>
+            <li>Natural language input via MCP protocol</li>
+            <li>Embedding model encodes query semantics</li>
+            <li>FAISS index matches to validated SQL templates</li>
+            <li>Validated SQL executed against ACO database</li>
+            <li>Structured clinical insights returned to user</li>
+          </ul>
+        </div>
+        <div class="arch-note">
+          <div class="arch-note-label">Team Role</div>
+          <ul>
+            <li>RAG pipeline design & implementation</li>
+            <li>MCP server architecture</li>
+            <li>Technical documentation & design docs</li>
+            <li>Client communications with Pathways Health</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stock Trading Platform -->
+    <div class="project-card">
+      <div class="project-badge">Database Systems · 2025</div>
+      <div class="project-name">Social Stock Trading Platform</div>
+      <p class="project-desc">
+        A full-stack social trading web app built for a database systems course. Features a dark-themed
+        single-file frontend with seven distinct sections: Dashboard, Market, Orders, Portfolio, Social
+        feed, Account, and Reports. Connected to a relational backend with complex SQL including
+        triggers, correlated subqueries, and aggregate analytics.
+      </p>
+      <div class="project-tech">
+        <span class="tag">HTML / CSS / JS</span>
+        <span class="tag">SQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">JDBC</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Employee Management System -->
+    <div class="project-card">
+      <div class="project-badge">Programming Languages · 2025</div>
+      <div class="project-name">Employee Management System</div>
+      <p class="project-desc">
+        A Python application demonstrating multi-paradigm programming concepts including object-oriented
+        class hierarchies, file I/O, and data processing. Implements an <code style="font-family:var(--mono-font);font-size:0.85em;color:var(--teal);">Employee</code> model with a
+        separate <code style="font-family:var(--mono-font);font-size:0.85em;color:var(--teal);">Processor</code> class for clean separation of data management and business logic.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Python</span>
+        <span class="tag">OOP</span>
+        <span class="tag">File I/O</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Haskell Pi -->
+    <div class="project-card">
+      <div class="project-badge">Functional Programming · 2025</div>
+      <div class="project-name">π Calculator — Five Methods</div>
+      <p class="project-desc">
+        A Haskell program that computes π using five distinct mathematical methods, written as an
+        exploration of functional programming concepts including higher-order functions, lazy
+        evaluation, and type system features unique to Haskell. Compares convergence rates
+        across different series approximations.
+      </p>
+      <div class="project-tech">
+        <span class="tag">Haskell</span>
+        <span class="tag">Functional Programming</span>
+        <span class="tag">Numerical Methods</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Book Inventory -->
+    <div class="project-card">
+      <div class="project-badge">C++ OOP · 2024</div>
+      <div class="project-name">Book Inventory System</div>
+      <p class="project-desc">
+        A C++ inventory management system built around modern OOP principles — polymorphism,
+        inheritance hierarchies, and smart pointer memory management using <code style="font-family:var(--mono-font);font-size:0.85em;color:var(--teal);">unique_ptr</code>.
+        Demonstrates safe dynamic dispatch with virtual functions and a clean object model.
+      </p>
+      <div class="project-tech">
+        <span class="tag">C++</span>
+        <span class="tag">Polymorphism</span>
+        <span class="tag">Smart Pointers</span>
+        <span class="tag">OOP</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Experience ── -->
+<section id="experience">
+  <div class="fade-in">
+    <div class="section-label">// experience</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">What I've Done</h2>
+  </div>
+  <div class="experience-list fade-in">
+
+    <div class="exp-item">
+      <div class="exp-date">2025 – 2026</div>
+      <div class="exp-right">
+        <div class="exp-role">Senior Design Engineer — ALICE Project</div>
+        <div class="exp-org">Pathways Health Partners · UCF Senior Design</div>
+        <ul class="exp-bullets">
+          <li>Designing and building a Python-based MCP server that routes natural language clinical queries through a RAG pipeline with sentence-transformer embeddings and FAISS similarity search</li>
+          <li>Architecting pre-validated SQL template system to ensure query accuracy and clinical auditability for ACO data</li>
+          <li>Producing formal technical deliverables: preliminary design documents, architecture diagrams, and budget sections for healthcare sponsor review</li>
+          <li>Collaborating as part of a four-person team, managing client communication, sprint planning, and code integration</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2024 – Present</div>
+      <div class="exp-right">
+        <div class="exp-role">Independent Equity Researcher</div>
+        <div class="exp-org">Self-directed · Stock Market Analysis</div>
+        <ul class="exp-bullets">
+          <li>Conduct technical chart analysis and equity research on individual stocks and ETFs, including gap analysis and price structure studies on instruments like VOO and $RDW (Redwire Corporation)</li>
+          <li>Synthesize bull/bear case frameworks combining financial fundamentals with technical indicators</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2022 – Present</div>
+      <div class="exp-right">
+        <div class="exp-role">B.S. Computer Science Student</div>
+        <div class="exp-org">University of Central Florida · Orlando, FL</div>
+        <ul class="exp-bullets">
+          <li>Completed rigorous coursework in programming languages (functional, logic, OOP paradigms across Python, Haskell, C++, JavaScript, Java), database systems theory, algorithms, and physics</li>
+          <li>Applied database theory in hands-on projects including BCNF decomposition, MVD analysis, triggers, embedded SQL, and correlated subquery design</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Education ── -->
+<section id="education">
+  <div class="fade-in">
+    <div class="section-label">// education</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">Academic Background</h2>
+  </div>
+  <div class="edu-card fade-in">
+    <div class="edu-shield">🏛️</div>
+    <div>
+      <div class="edu-degree">Bachelor of Science, Computer Science</div>
+      <div class="edu-school">University of Central Florida · Orlando, Florida</div>
+      <div class="edu-details">Expected Graduation: 2026</div>
+      <div class="edu-courses">
+        <span class="tag">Programming Languages</span>
+        <span class="tag">Database Systems</span>
+        <span class="tag">Data Structures & Algorithms</span>
+        <span class="tag">Object-Oriented Programming</span>
+        <span class="tag">Electricity & Magnetism</span>
+        <span class="tag">Functional Programming</span>
+        <span class="tag">Systems Analysis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ── Contact ── -->
+<section id="contact">
+  <div class="fade-in">
+    <div class="section-label" style="text-align:center">// contact</div>
+    <div class="section-rule" style="display:block;margin:0.6rem auto 1.2rem"></div>
+    <h2 class="section-title" style="margin-bottom:1rem">Get In Touch</h2>
+  </div>
+  <p class="contact-subtitle fade-in">
+    I'm actively looking for internship and new grad opportunities in software engineering,
+    AI systems, and backend development. Feel free to reach out.
+  </p>
+  <div class="contact-links fade-in">
+    <a href="mailto:your.email@ucf.edu" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
+      Email Me
+    </a>
+    <a href="https://www.linkedin.com/in/ethan-baedorf" target="_blank" rel="noopener" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="contact-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub
+    </a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <span>Ethan Baedorf · Built with HTML & CSS · Hosted on GitHub Pages</span>
+</footer>
+
+<!-- ── Scripts ── -->
+<script>
+  // Terminal typewriter
+  const phrases = [
+    'Building AI systems for healthcare.',
+    'Engineering databases that scale.',
+    'Writing code that solves real problems.',
+    'Turning queries into clinical insights.',
+  ];
+  const terminalEl = document.getElementById('terminal-text');
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+  function type() {
+    const phrase = phrases[phraseIdx];
+    const displayed = deleting
+      ? phrase.substring(0, charIdx--)
+      : phrase.substring(0, charIdx++);
+    terminalEl.innerHTML = displayed + '<span class="cursor"></span>';
+    if (!deleting && charIdx > phrase.length) {
+      deleting = true; setTimeout(type, 1800); return;
+    }
+    if (deleting && charIdx < 0) {
+      deleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; charIdx = 0;
+    }
+    setTimeout(type, deleting ? 38 : 68);
+  }
+  type();
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); }});
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
