@@ -213,36 +213,6 @@
     .fact-value { font-size: 0.95rem; color: var(--white); font-weight: 500; }
     .fact-sub { font-size: 0.82rem; color: var(--muted); }
 
-    /* ── Skills ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .skill-card {
-      background: var(--navy-card);
-      border: 1px solid var(--navy-border);
-      border-radius: 10px; padding: 1.6rem;
-      transition: border-color 0.25s, background 0.25s;
-    }
-    .skill-card:hover { border-color: var(--teal); background: var(--teal-glow); }
-    .skill-card-title {
-      font-family: var(--display-font); font-weight: 600;
-      font-size: 0.9rem; color: var(--teal);
-      letter-spacing: 0.04em; margin-bottom: 1rem;
-      text-transform: uppercase;
-    }
-    .skill-tags {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .tag {
-      font-family: var(--mono-font); font-size: 0.76rem;
-      background: rgba(0,212,200,0.08);
-      color: var(--white);
-      padding: 0.28rem 0.65rem; border-radius: 4px;
-      border: 1px solid rgba(0,212,200,0.15);
-    }
-
     /* ── Projects ── */
     .projects-grid {
       display: grid;
@@ -276,6 +246,13 @@
     .project-tech {
       display: flex; flex-wrap: wrap; gap: 0.4rem;
       margin-top: 1.3rem;
+    }
+    .tag {
+      font-family: var(--mono-font); font-size: 0.76rem;
+      background: rgba(0,212,200,0.08);
+      color: var(--white);
+      padding: 0.28rem 0.65rem; border-radius: 4px;
+      border: 1px solid rgba(0,212,200,0.15);
     }
     .project-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
     .project-link {
@@ -325,7 +302,6 @@
     .exp-org {
       font-size: 0.88rem; color: var(--teal); margin-bottom: 0.8rem;
     }
-    .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
     .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
     .exp-bullets li {
       font-size: 0.9rem; color: var(--muted); padding-left: 1.2rem; position: relative;
@@ -416,7 +392,6 @@
   <div class="nav-logo">EB<span>.</span></div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -432,9 +407,10 @@
     <h1 class="hero-name">Ethan<br><span class="accent">Baedorf.</span></h1>
     <div class="hero-terminal" id="terminal-text"><span class="cursor"></span></div>
     <p class="hero-desc">
-      Senior CS student at <strong>UCF</strong> building intelligent systems at the intersection of
-      <strong>AI, databases, and full-stack engineering</strong>. Currently developing an AI-powered
-      clinical query engine for a healthcare sponsor.
+      Senior CS student at <strong>UCF</strong> with internship experience at <strong>BNY</strong>
+      building agentic AI systems and external-facing APIs. Currently working on the
+      <strong>Pershing Wealth Services</strong> connectivity team and developing an AI-powered
+      clinical query engine as a senior design capstone.
     </p>
     <div class="hero-buttons">
       <a href="#projects" class="btn-primary">View My Work</a>
@@ -457,19 +433,22 @@
     <div class="about-text">
       <p>
         I'm a senior Computer Science student at the <strong>University of Central Florida</strong>,
-        expected to graduate in 2026. My work spans backend systems, AI integration, database
-        engineering, and frontend development — I like being able to build the whole thing.
+        expected to graduate in 2026. My work has spanned AI systems engineering, API development,
+        and full-stack projects — I like understanding how all the layers fit together.
       </p>
       <p>
-        Right now I'm leading technical development on <strong>ALICE</strong>, an AI-powered MCP
-        server for healthcare analytics that routes natural language clinical queries through a
-        vector-based RAG pipeline to pre-validated SQL — built for our senior design sponsor,
+        I've interned twice at <strong>BNY</strong> — first through UCF's Co-Op program, where I
+        contributed to an agentic AI monitoring system for financial infrastructure, and now as a
+        software engineering intern on the <strong>Pershing Wealth Services</strong> connectivity
+        team building external-facing APIs.
+      </p>
+      <p>
+        On the academic side, I'm leading early development on <strong>ALICE</strong>, an AI-powered
+        MCP server for healthcare analytics, as part of my senior design capstone with sponsor
         Pathways Health Partners.
       </p>
       <p>
-        Outside of school, I analyze equity markets and track positions using technical chart
-        analysis. I find that the systems-thinking you learn from engineering applies just as
-        naturally to understanding market structure.
+        Outside of engineering, I have a deep interest in financial markets, I enjoy listening to music and playing guitar, and I like to stay active and enjoy the outdoors.
       </p>
     </div>
     <div class="about-facts">
@@ -491,97 +470,18 @@
       <div class="fact-item">
         <div class="fact-icon">💼</div>
         <div>
-          <div class="fact-label">Current Focus</div>
-          <div class="fact-value">Senior Design · ALICE</div>
-          <div class="fact-sub">AI Clinical Query Engine for Pathways Health Partners</div>
+          <div class="fact-label">Currently</div>
+          <div class="fact-value">Software Engineering Intern</div>
+          <div class="fact-sub">BNY · Pershing Wealth Services · Connectivity Team</div>
         </div>
       </div>
       <div class="fact-item">
         <div class="fact-icon">⚡</div>
         <div>
           <div class="fact-label">Interests</div>
-          <div class="fact-value">AI Systems · Database Engineering</div>
-          <div class="fact-sub">Stock Market Analysis · Technical Trading</div>
+          <div class="fact-value">AI Systems · API Engineering</div>
+          <div class="fact-sub">Financial Markets · Equity Research</div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- ── Skills ── -->
-<section id="skills">
-  <div class="fade-in">
-    <div class="section-label">// skills</div>
-    <div class="section-rule"></div>
-    <h2 class="section-title">Technical Toolkit</h2>
-  </div>
-  <div class="skills-grid fade-in">
-    <div class="skill-card">
-      <div class="skill-card-title">Languages</div>
-      <div class="skill-tags">
-        <span class="tag">Python</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">Java</span>
-        <span class="tag">C</span>
-        <span class="tag">C++</span>
-        <span class="tag">Haskell</span>
-        <span class="tag">SQL</span>
-        <span class="tag">HTML / CSS</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">AI & Data</div>
-      <div class="skill-tags">
-        <span class="tag">RAG Systems</span>
-        <span class="tag">FAISS</span>
-        <span class="tag">sentence-transformers</span>
-        <span class="tag">Vector Embeddings</span>
-        <span class="tag">MCP Protocol</span>
-        <span class="tag">Claude API</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Databases</div>
-      <div class="skill-tags">
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">SQL Server</span>
-        <span class="tag">JDBC</span>
-        <span class="tag">Schema Design</span>
-        <span class="tag">BCNF / Normal Forms</span>
-        <span class="tag">Triggers</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Tools & Platforms</div>
-      <div class="skill-tags">
-        <span class="tag">Git / GitHub</span>
-        <span class="tag">VS Code</span>
-        <span class="tag">Linux</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">GitHub Pages</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Concepts</div>
-      <div class="skill-tags">
-        <span class="tag">Object-Oriented Design</span>
-        <span class="tag">Functional Programming</span>
-        <span class="tag">Data Structures</span>
-        <span class="tag">Algorithms</span>
-        <span class="tag">REST APIs</span>
-        <span class="tag">Polymorphism</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Coursework</div>
-      <div class="skill-tags">
-        <span class="tag">Programming Languages</span>
-        <span class="tag">Database Systems</span>
-        <span class="tag">Electricity & Magnetism</span>
-        <span class="tag">Data Structures</span>
-        <span class="tag">Algorithms</span>
       </div>
     </div>
   </div>
@@ -598,17 +498,18 @@
   </div>
   <div class="projects-grid fade-in">
 
-    <!-- Featured -->
+    <!-- ALICE Featured -->
     <div class="project-card featured">
       <div>
-        <div class="project-badge">★ Senior Design · 2025–2026</div>
+        <div class="project-badge">★ Senior Design · In Progress — 2025–2026</div>
         <div class="project-name">ALICE — ACO Intelligence Engine</div>
         <p class="project-desc">
-          An AI-powered MCP (Model Context Protocol) server built for Pathways Health Partners, a
-          healthcare sponsor managing Accountable Care Organizations. ALICE routes natural language
-          clinical queries through a RAG pipeline, using sentence-transformer embeddings and FAISS
-          similarity search to match queries against pre-validated SQL templates — producing accurate,
-          auditable results without freeform query generation.
+          An AI-powered MCP (Model Context Protocol) server being developed for Pathways Health Partners,
+          a healthcare sponsor managing Accountable Care Organizations. Initial setup and system design were
+          completed in the first semester; the core buildout is underway in the current semester. ALICE will
+          route natural language clinical queries through a RAG pipeline, using sentence-transformer
+          embeddings and FAISS similarity search to match queries against pre-validated SQL templates —
+          producing accurate, auditable results without freeform query generation.
         </p>
         <div class="project-tech">
           <span class="tag">Python</span>
@@ -649,89 +550,53 @@
       </div>
     </div>
 
-    <!-- Stock Trading Platform -->
+    <!-- BNY AI Monitor -->
     <div class="project-card">
-      <div class="project-badge">Database Systems · 2025</div>
-      <div class="project-name">Social Stock Trading Platform</div>
+      <div class="project-badge">BNY Co-Op · Fall 2025</div>
+      <div class="project-name">Agentic AI Infrastructure Monitor</div>
       <p class="project-desc">
-        A full-stack social trading web app built for a database systems course. Features a dark-themed
-        single-file frontend with seven distinct sections: Dashboard, Market, Orders, Portfolio, Social
-        feed, Account, and Reports. Connected to a relational backend with complex SQL including
-        triggers, correlated subqueries, and aggregate analytics.
-      </p>
-      <div class="project-tech">
-        <span class="tag">HTML / CSS / JS</span>
-        <span class="tag">SQL</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">JDBC</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Employee Management System -->
-    <div class="project-card">
-      <div class="project-badge">Programming Languages · 2025</div>
-      <div class="project-name">Employee Management System</div>
-      <p class="project-desc">
-        A Python application demonstrating multi-paradigm programming concepts including object-oriented
-        class hierarchies, file I/O, and data processing. Implements an <code style="font-family:var(--mono-font);font-size:0.85em;color:var(--teal);">Employee</code> model with a
-        separate <code style="font-family:var(--mono-font);font-size:0.85em;color:var(--teal);">Processor</code> class for clean separation of data management and business logic.
+        An agentic AI system built at BNY that continuously monitors a live financial application for
+        service degradation. A simulation script dynamically scales containers up and down to introduce
+        real failure conditions; the agent detects what's down, generates a written diagnosis of the
+        likely root cause, and produces a recommended remediation plan — all without human intervention.
+        <br/><br/>
+        My core contribution was vectorizing the application's codebase and indexing it into a vector
+        database. When an issue is detected, the agent runs a similarity search against the codebase
+        embeddings to retrieve the most relevant source context — grounding its diagnosis in the actual
+        code rather than generic knowledge, and meaningfully improving response accuracy and specificity.
       </p>
       <div class="project-tech">
         <span class="tag">Python</span>
-        <span class="tag">OOP</span>
-        <span class="tag">File I/O</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          GitHub
-        </a>
+        <span class="tag">Vector Embeddings</span>
+        <span class="tag">Similarity Search</span>
+        <span class="tag">RAG</span>
+        <span class="tag">LLM Integration</span>
+        <span class="tag">Container Monitoring</span>
       </div>
     </div>
 
-    <!-- Haskell Pi -->
+    <!-- NFL Play Predictor -->
     <div class="project-card">
-      <div class="project-badge">Functional Programming · 2025</div>
-      <div class="project-name">π Calculator — Five Methods</div>
+      <div class="project-badge">ML / Data Science · Personal Project</div>
+      <div class="project-name">NFL Play Predictor</div>
       <p class="project-desc">
-        A Haskell program that computes π using five distinct mathematical methods, written as an
-        exploration of functional programming concepts including higher-order functions, lazy
-        evaluation, and type system features unique to Haskell. Compares convergence rates
-        across different series approximations.
+        A machine learning system that predicts NFL play calls on a per-team basis. Rather than a single
+        generalized model, each team gets its own trained model fitted to its historical tendencies and
+        tendencies of opponents against it.
+        <br/><br/>
+        Input features include standard situational variables (down, yards to go, time remaining,
+        offensive formation) alongside custom-engineered features — including receiver spacing ratios,
+        personnel grouping ratios, and other derived metrics. Data was sourced, cleaned, and preprocessed
+        with a dedicated pipeline script before model training. Top-performing team models achieved
+        around 70% prediction accuracy.
       </p>
       <div class="project-tech">
-        <span class="tag">Haskell</span>
-        <span class="tag">Functional Programming</span>
-        <span class="tag">Numerical Methods</span>
-      </div>
-      <div class="project-links">
-        <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Book Inventory -->
-    <div class="project-card">
-      <div class="project-badge">C++ OOP · 2024</div>
-      <div class="project-name">Book Inventory System</div>
-      <p class="project-desc">
-        A C++ inventory management system built around modern OOP principles — polymorphism,
-        inheritance hierarchies, and smart pointer memory management using <code style="font-family:var(--mono-font);font-size:0.85em;color:var(--teal);">unique_ptr</code>.
-        Demonstrates safe dynamic dispatch with virtual functions and a clean object model.
-      </p>
-      <div class="project-tech">
-        <span class="tag">C++</span>
-        <span class="tag">Polymorphism</span>
-        <span class="tag">Smart Pointers</span>
-        <span class="tag">OOP</span>
+        <span class="tag">Python</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Feature Engineering</span>
+        <span class="tag">Data Preprocessing</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">pandas</span>
       </div>
       <div class="project-links">
         <a href="https://github.com/Ebaed135" target="_blank" rel="noopener" class="project-link">
@@ -756,39 +621,40 @@
   <div class="experience-list fade-in">
 
     <div class="exp-item">
+      <div class="exp-date">Summer 2026<br/>Present</div>
+      <div class="exp-right">
+        <div class="exp-role">Software Engineering Intern — Connectivity Team</div>
+        <div class="exp-org">BNY · Pershing Wealth Services Platform</div>
+        <ul class="exp-bullets">
+          <li>Working on the connectivity team within Pershing Wealth Services, focused on designing and building external-facing APIs consumed by BNY's wealth management clients</li>
+          <li>Early in the role — ramping up on the platform architecture, codebase, and team workflows</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Fall 2025</div>
+      <div class="exp-right">
+        <div class="exp-role">Software Engineering Co-Op — Agentic AI Monitoring</div>
+        <div class="exp-org">BNY · UCF Experiential Learning Program</div>
+        <ul class="exp-bullets">
+          <li>Contributed to an agentic AI monitoring system that observed a live financial application under simulated failure conditions — a script would dynamically scale containers up and down, and the AI agent would detect degraded or downed services, diagnose the issue, and suggest remediation steps</li>
+          <li>Sole contributor to codebase vectorization: ingested and embedded the application codebase so the LLM could retrieve relevant source context when diagnosing failures, significantly improving the specificity and accuracy of its responses</li>
+          <li>Worked within UCF's experiential learning Co-Op program, integrating industry engineering practices alongside coursework</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
       <div class="exp-date">2025 – 2026</div>
       <div class="exp-right">
         <div class="exp-role">Senior Design Engineer — ALICE Project</div>
         <div class="exp-org">Pathways Health Partners · UCF Senior Design</div>
         <ul class="exp-bullets">
-          <li>Designing and building a Python-based MCP server that routes natural language clinical queries through a RAG pipeline with sentence-transformer embeddings and FAISS similarity search</li>
-          <li>Architecting pre-validated SQL template system to ensure query accuracy and clinical auditability for ACO data</li>
-          <li>Producing formal technical deliverables: preliminary design documents, architecture diagrams, and budget sections for healthcare sponsor review</li>
-          <li>Collaborating as part of a four-person team, managing client communication, sprint planning, and code integration</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2024 – Present</div>
-      <div class="exp-right">
-        <div class="exp-role">Independent Equity Researcher</div>
-        <div class="exp-org">Self-directed · Stock Market Analysis</div>
-        <ul class="exp-bullets">
-          <li>Conduct technical chart analysis and equity research on individual stocks and ETFs, including gap analysis and price structure studies on instruments like VOO and $RDW (Redwire Corporation)</li>
-          <li>Synthesize bull/bear case frameworks combining financial fundamentals with technical indicators</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-date">2022 – Present</div>
-      <div class="exp-right">
-        <div class="exp-role">B.S. Computer Science Student</div>
-        <div class="exp-org">University of Central Florida · Orlando, FL</div>
-        <ul class="exp-bullets">
-          <li>Completed rigorous coursework in programming languages (functional, logic, OOP paradigms across Python, Haskell, C++, JavaScript, Java), database systems theory, algorithms, and physics</li>
-          <li>Applied database theory in hands-on projects including BCNF decomposition, MVD analysis, triggers, embedded SQL, and correlated subquery design</li>
+          <li>Completed initial system design, architecture planning, and project setup in the first semester; core development is underway in the current semester</li>
+          <li>Designing a Python-based MCP server to route natural language clinical queries through a RAG pipeline with sentence-transformer embeddings and FAISS similarity search against pre-validated SQL templates</li>
+          <li>Produced formal technical deliverables including preliminary design documents, architecture diagrams, and budget sections for sponsor review</li>
+          <li>Collaborating as part of a four-person team with direct client communication with Pathways Health Partners</li>
         </ul>
       </div>
     </div>
@@ -812,13 +678,13 @@
       <div class="edu-school">University of Central Florida · Orlando, Florida</div>
       <div class="edu-details">Expected Graduation: 2026</div>
       <div class="edu-courses">
-        <span class="tag">Programming Languages</span>
-        <span class="tag">Database Systems</span>
         <span class="tag">Data Structures & Algorithms</span>
         <span class="tag">Object-Oriented Programming</span>
-        <span class="tag">Electricity & Magnetism</span>
-        <span class="tag">Functional Programming</span>
-        <span class="tag">Systems Analysis</span>
+        <span class="tag">Programming Languages</span>
+        <span class="tag">Calculus 3</span>
+        <span class="tag">Physics 2</span>
+        <span class="tag">Computer Logic & Architecture</span>
+        <span class="tag">Discrete Math 2</span>
       </div>
     </div>
   </div>
@@ -834,11 +700,10 @@
     <h2 class="section-title" style="margin-bottom:1rem">Get In Touch</h2>
   </div>
   <p class="contact-subtitle fade-in">
-    I'm actively looking for internship and new grad opportunities in software engineering,
-    AI systems, and backend development. Feel free to reach out.
+    Always open to connecting — whether about engineering, AI, financial markets, or future opportunities.
   </p>
   <div class="contact-links fade-in">
-    <a href="mailto:your.email@ucf.edu" class="contact-link">
+    <a href="mailto:ethanbaedorf@gmail.com" class="contact-link">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg>
       Email Me
     </a>
@@ -862,10 +727,10 @@
 <script>
   // Terminal typewriter
   const phrases = [
-    'Building AI systems for healthcare.',
-    'Engineering databases that scale.',
+    'Building APIs at BNY Pershing.',
+    'Engineering agentic AI systems.',
     'Writing code that solves real problems.',
-    'Turning queries into clinical insights.',
+    'Turning data into clinical insights.',
   ];
   const terminalEl = document.getElementById('terminal-text');
   let phraseIdx = 0, charIdx = 0, deleting = false;
